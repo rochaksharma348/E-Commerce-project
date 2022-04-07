@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+
+            <div align="center">
+
+                <form [formGroup]="deleteFormGroup" (ngSubmit)="onSubmit()" class="form-area">
+
+                Please tell us why you want to cancel this order!
+                <br><br>
+                <div class="form-group shadow-textarea col-md-9">
+                    <textarea formControlName="reason" class="form-control z-depth-1 pd-5" rows="3" placeholder=""></textarea>
+
+                    <div *ngIf="reason.invalid && (reason.touched || reason.dirty)" class="alert alert-danger mt-1">
+                        <div *ngIf="(reason.errors?.['required']) || (reason.errors?.['notOnlyWhiteSpaces'])">
+                            This field is required
+                        </div>
+                        <div *ngIf="(reason.errors?.['minlength'])">
+                            Reason should be at least five characters long
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-info btn-sm" style="margin-right: 1%;">Proceed</button>
+
+                <button class="btn btn-secondary btn-sm" routerLink="/order-history">Cancel</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

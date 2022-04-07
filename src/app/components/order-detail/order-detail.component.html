@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+
+            <div>
+                Order Tracking Number:
+                <span style="font-weight: bold; color:rgb(17, 124, 231);"> {{orderHistoryItem.orderTrackingNumber}} </span>
+            </div>
+            <div>
+                Status: 
+                <span style="font-weight: bold; color: rgb(27, 218, 27);"> {{orderHistoryItem.status}} </span>
+            </div>
+
+            <hr>
+
+            <b style="color: grey; font-size: large;">Order Items</b>
+            <table class="table table-bordered">
+                <tr>
+                </tr>
+                <tr *ngFor="let tempOrderItem of orderHistoryItem.orderItems" routerLink="/products/{{tempOrderItem.productId}}">
+                    <td width="20%"><img src="{{ tempOrderItem.imageUrl }}" class="img-responsive"></td>
+                    <td width="50%">
+                        <!-- <p>{{ tempCartItem.name}}</p> -->
+                        <p>Unit Price: {{ tempOrderItem.unitPrice | currency: 'INR'}}</p>
+                    </td>
+                    <td width="30%">
+                        <p>Quantity: {{ tempOrderItem.quantity }}</p>
+                        <p>Subtotal: {{ tempOrderItem.quantity * tempOrderItem.unitPrice | currency: 'INR'}}</p>
+                    </td>
+                </tr>
+
+            </table>
+            <hr>
+
+            <div>
+                <b style="color: grey; font-size: large;">Shipping Details</b>
+                <p> {{ orderHistoryItem.shippingAddress.street }} </p>
+                <p> {{ orderHistoryItem.shippingAddress.city }} - {{ orderHistoryItem.shippingAddress.zipCode }} </p>
+                <p> {{ orderHistoryItem.shippingAddress.state }}, {{ orderHistoryItem.shippingAddress.country }} </p>
+            </div>
+            <hr>
+
+            <div>
+                <b style="color: grey; font-size: large;">Price Details</b>
+                <p>Total Quantity: {{ orderHistoryItem.totalQuantity }}</p>
+                <p>Sub-total: {{ orderHistoryItem.totalPrice | currency: 'INR' }}</p>
+                <p>Shipping Fee: {{ 0 | currency : 'INR'}} </p>
+                <b>Total Price: {{ orderHistoryItem.totalPrice | currency: 'INR' }}</b><br>
+            </div>
+            <hr>
+
+            <button class="btn btn-danger" routerLink="/order-history/delete/{{orderHistoryItem.id}}">
+                Cancel Order
+            </button>
+
+        </div>
+    </div>
+</div>
