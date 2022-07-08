@@ -129,7 +129,7 @@ export class CheckoutComponent implements OnInit {
     var elements = this.stripe.elements();
 
     // create a card element
-    this.cardElement = elements.create('card', {hidePostalCode: true});
+    this.cardElement = elements.create('card', {hidePostalCode : true});
 
     // Add an instance of card UI component into the 'card-element' div
     this.cardElement.mount("#card-element");
